@@ -13,27 +13,39 @@ Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
-    numeroC = None;
 
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.getBinomica.clicked.connect(self.getNumero)
+        self.getBinomica.clicked.connect(self.getNumeroBinomica)
+        self.getPolar.clicked.connect(self.getNumeroPolar)
 
-    def getNumero(self):
+        global numeroC
+
+    def getNumeroBinomica(self):
         real, okPressed = QInputDialog.getText(self, "Valor Real","Real:", QLineEdit.Normal, "")
         if okPressed and real != '':
             imag, okPressed2 = QInputDialog.getText(self, "Valor Imaginario","Imaginario:", QLineEdit.Normal, "")
             if okPressed2 and imag != '':
-#               binomica = real + "+" + imag + "j"
-#               ordenado = "(" + real + "+" + imag + ")"
-#               self.binomicaText.setText(binomica)
-#               self.ordenadoText.setText(ordenado)
                 numeroC = NumeroComplejo(real,imag)
         self.binomicaText.setText(numeroC.getFormaBinomica())
         self.ordenadoText.setText(numeroC.getFormaOrdenada())
         self.polarText.setText(numeroC.getFormaPolar())
+
+
+    def getNumeroPolar(self):
+        p, okPressed = QInputDialog.getText(self, "Modulo","Fi (p):", QLineEdit.Normal, "")
+        if okPressed and p != '':
+            O, okPressed2 = QInputDialog.getText(self, "Angulo","Tita en radianes (O):", QLineEdit.Normal, "")
+            if okPressed2 and O != '':
+                #CALCULOS PARA SACAR LA FORMA BINOMICA
+                numeroC = NumeroComplejo(0,0)
+                numeroC.setEnPolar(p,O)
+        self.binomicaText.setText(numeroC.getFormaBinomica())
+        self.ordenadoText.setText(numeroC.getFormaOrdenada())
+        self.polarText.setText(numeroC.getFormaPolar())
+
 
 if __name__ == "__main__":
     app =  QtWidgets.QApplication(sys.argv)

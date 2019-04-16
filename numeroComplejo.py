@@ -43,3 +43,9 @@ class NumeroComplejo(object):
         p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))
         O = math.atan(self.imaginario/self.real)
         return (str(round(p,2)) + '(' + str(round(math.cos(O),2)) + '+' + str(round(math.sin(O),2)) + 'j')
+
+    def setEnPolar(self,p,O):
+        a = Decimal(p) * Decimal(math.cos(Decimal(O)))
+        b = Decimal(p) * Decimal(math.sin(Decimal(O)))
+        self.real = round(a,4)
+        self.imaginario = round(b,4)
