@@ -44,7 +44,14 @@ class NumeroComplejo(object):
 
     def getFormaPolar(self):
         p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))
-        O = math.atan(self.imaginario/self.real)
+
+        if self.real != 0 :
+            O = math.atan(self.imaginario/self.real)
+        else:
+            if self.imaginario > 0 :
+                O = math.pi / 2
+            else:
+                O = math.pi * 3 / 2
 
         if (self.real > 0) and (self.imaginario < 0) :
             O += 2 * math.pi

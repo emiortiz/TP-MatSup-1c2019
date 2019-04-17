@@ -41,14 +41,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if okPressed and p != '':
             O, okPressed2 = QInputDialog.getText(self, "Angulo","Tita en radianes (O):", QLineEdit.Normal, "")
             if okPressed2 and O != '':
-  #              try:
+                try:
                     numeroC = NumeroComplejo("0","0")
                     numeroC.setEnPolar(p,O)
                     self.binomicaText.setText(numeroC.getFormaBinomica())
                     self.ordenadoText.setText(numeroC.getFormaOrdenada())
                     self.polarText.setText(numeroC.getFormaPolar())
- #               except:
-#                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
 
 if __name__ == "__main__":
