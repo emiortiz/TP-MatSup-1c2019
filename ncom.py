@@ -4,7 +4,7 @@
 import sys
 from numeroComplejo import NumeroComplejo
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit
+from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QMessageBox
 from decimal import Decimal
 
 qtCreatorFile = "ncom.ui" # Nombre del archivo aquí.
@@ -28,23 +28,27 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if okPressed and real != '':
             imag, okPressed2 = QInputDialog.getText(self, "Valor Imaginario","Imaginario:", QLineEdit.Normal, "")
             if okPressed2 and imag != '':
-                numeroC = NumeroComplejo(real,imag)
-        self.binomicaText.setText(numeroC.getFormaBinomica())
-        self.ordenadoText.setText(numeroC.getFormaOrdenada())
-        self.polarText.setText(numeroC.getFormaPolar())
-
+                try:
+                    numeroC = NumeroComplejo(real,imag)
+                    self.binomicaText.setText(numeroC.getFormaBinomica())
+                    self.ordenadoText.setText(numeroC.getFormaOrdenada())
+                    self.polarText.setText(numeroC.getFormaPolar())
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
     def getNumeroPolar(self):
         p, okPressed = QInputDialog.getText(self, "Modulo","Fi (p):", QLineEdit.Normal, "")
         if okPressed and p != '':
             O, okPressed2 = QInputDialog.getText(self, "Angulo","Tita en radianes (O):", QLineEdit.Normal, "")
             if okPressed2 and O != '':
-                #CALCULOS PARA SACAR LA FORMA BINOMICA
-                numeroC = NumeroComplejo(0,0)
-                numeroC.setEnPolar(p,O)
-        self.binomicaText.setText(numeroC.getFormaBinomica())
-        self.ordenadoText.setText(numeroC.getFormaOrdenada())
-        self.polarText.setText(numeroC.getFormaPolar())
+  #              try:
+                    numeroC = NumeroComplejo("0","0")
+                    numeroC.setEnPolar(p,O)
+                    self.binomicaText.setText(numeroC.getFormaBinomica())
+                    self.ordenadoText.setText(numeroC.getFormaOrdenada())
+                    self.polarText.setText(numeroC.getFormaPolar())
+ #               except:
+#                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
 
 if __name__ == "__main__":
