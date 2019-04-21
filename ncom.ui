@@ -30,23 +30,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; font-weight:600; color:#204a87;&quot;&gt;NCOM - Números Complejos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="getBinomica">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>160</y>
-      <width>131</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(32, 74, 135);
-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Binomica</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -102,13 +85,13 @@ color: rgb(255, 255, 255);</string>
      <string>Polar:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="getPolar">
+   <widget class="QPushButton" name="getComplejos">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>160</y>
-      <width>101</width>
-      <height>35</height>
+      <x>330</x>
+      <y>180</y>
+      <width>171</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -116,14 +99,14 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Polar</string>
+     <string>Ingresar</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>170</y>
+      <x>190</x>
+      <y>180</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -171,7 +154,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>714</width>
-     <height>22</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
