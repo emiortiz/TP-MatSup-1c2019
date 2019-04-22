@@ -11,8 +11,29 @@ Requirements:
  - pip 1.8 or greater
 
 ## Enviroment setup
-### Install pipenv
+### Install virtualenv
 
 ~~~
-$ pip install --user pipenv
+$ pip install --user virtualenv
 ~~~
+
+### Clone repo
+
+~~~
+$ git clone <repo>
+~~~
+
+### Create a virtualenv and activate it
+
+~~~
+$ virtualenv venv
+$ source venv/bin/activate
+~~~
+
+### Install requirements
+
+~~~
+$ pip install -r requeriments.txt
+~~~
+
+
