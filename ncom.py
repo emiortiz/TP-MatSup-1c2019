@@ -3,6 +3,7 @@
 
 import sys
 import re
+import math
 from numeroComplejo import NumeroComplejo
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QMessageBox
@@ -23,7 +24,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sumarButton.clicked.connect(self.sumar)
         self.restarButton.clicked.connect(self.restar)
         self.multiplicarButton.clicked.connect(self.multiplicar)
-#        self.dividirButton.clicked.connect(self.dividir)
+        self.dividirButton.clicked.connect(self.dividir)
 
         global numeroC
 
@@ -148,9 +149,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             if okPressed and numeroComplejo2 != '':
                 numero2 = self.setNumeroComplejo(numeroComplejo2)
                 try:
-                    real = Decimal(numero1.getReal()) * Decimal(numero2.getReal()) + (-1) * Decimal(numero1.getImaginario()) * Decimal(numero2.getImaginario())
-                    imaginario = Decimal(numero1.getReal()) * Decimal(numero2.getImaginario()) + Decimal(numero1.getImaginario()) * Decimal(numero2.getReal())
-                    numeroResultado = NumeroComplejo(str(real),str(imaginario))
+                    numeroResultado = self.operacionMultiplicar(numero1,numero2)
                     self.binomicaText.setText(numeroResultado.getFormaBinomica())
                     self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
                     self.polarText.setText(numeroResultado.getFormaPolar())
@@ -158,6 +157,43 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
+    def operacionMultiplicar(self,numero1,numero2):     
+        real = Decimal(numero1.getReal()) * Decimal(numero2.getReal()) + (-1) * Decimal(numero1.getImaginario()) * Decimal(numero2.getImaginario())
+        imaginario = Decimal(numero1.getReal()) * Decimal(numero2.getImaginario()) + Decimal(numero1.getImaginario()) * Decimal(numero2.getReal())
+        numeroResultado = NumeroComplejo(str(real),str(imaginario))
+        return numeroResultado
+
+    def getConjugado(self,numero):
+        real = numero.getReal()
+        imaginario = Decimal(numero.getImaginario()) * (-1)
+        conjugado = NumeroComplejo(str(real),str(imaginario))
+        return conjugado
+        
+    def dividir(self):
+        numero1 = NumeroComplejo('0','0')
+        numero2 = NumeroComplejo('0','0')
+        numeroComplejo1, okPressed = QInputDialog.getText(self, "Resta","Numero 1:", QLineEdit.Normal, "")
+        if okPressed and numeroComplejo1 != '':
+            numero1 = self.setNumeroComplejo(numeroComplejo1)
+            numeroComplejo2, okPressed = QInputDialog.getText(self, "Resta","Numero 2:", QLineEdit.Normal, "")
+ 
+            if okPressed and numeroComplejo2 != '':
+                numero2 = self.setNumeroComplejo(numeroComplejo2)
+               # try:
+                conjugadoDivisor = self.getConjugado(numero2)
+                divisorResultado = math.pow(Decimal(numero2.getReal()),2) + math.pow(Decimal(numero2.getImaginario()),2)
+                dividendo = self.operacionMultiplicar(numero1,conjugadoDivisor)
+                parteReal = Decimal(dividendo.getReal()) / Decimal(divisorResultado)
+                parteImaginaria = Decimal(dividendo.getImaginario()) / Decimal(divisorResultado)
+                
+                numeroResultado = NumeroComplejo(str(round(parteReal,4)),str(round(parteImaginaria,4)))
+                
+                self.binomicaText.setText(numeroResultado.getFormaBinomica())
+                self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
+                self.polarText.setText(numeroResultado.getFormaPolar())
+ 
+                #except:
+                 #   msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
 
 if __name__ == "__main__":
