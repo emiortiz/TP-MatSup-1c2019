@@ -9,6 +9,12 @@ class NumeroComplejo(object):
 
         self.real = Decimal(real)
         self.imaginario = Decimal(imaginario)
+    
+    def getReal(self):
+        return self.real;
+
+    def getImaginario(self):
+        return self.imaginario
 
     def getFormaBinomica(self):
         text = ''
@@ -59,7 +65,7 @@ class NumeroComplejo(object):
         if self.real < 0 :
             O += math.pi
 
-        return ("[" + str(round(p,2)) + "," + str(round(O,2)) + "]")
+        return ("[" + str(round(p,2)) + ";" + str(round(O,2)) + "]")
 
     def setEnPolar(self,p,O):
         p = p.replace(",",".")

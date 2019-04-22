@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>714</width>
-    <height>415</height>
+    <height>464</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>50</y>
+      <y>30</y>
       <width>391</width>
       <height>51</height>
      </rect>
@@ -34,7 +34,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>230</y>
+      <y>180</y>
       <width>67</width>
       <height>19</height>
      </rect>
@@ -47,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>260</y>
+      <y>210</y>
       <width>101</width>
       <height>19</height>
      </rect>
@@ -60,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>230</y>
+      <y>180</y>
       <width>171</width>
       <height>19</height>
      </rect>
@@ -76,7 +76,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>290</y>
+      <y>240</y>
       <width>41</width>
       <height>19</height>
      </rect>
@@ -89,7 +89,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>180</y>
+      <y>130</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -106,7 +106,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>180</y>
+      <y>130</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -119,7 +119,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>260</y>
+      <y>210</y>
       <width>171</width>
       <height>19</height>
      </rect>
@@ -135,7 +135,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>290</y>
+      <y>240</y>
       <width>171</width>
       <height>19</height>
      </rect>
@@ -147,6 +147,90 @@ color: rgb(255, 255, 255);</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="sumarButton">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>350</y>
+      <width>96</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sumar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="restarButton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>350</y>
+      <width>96</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Restar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="multiplicarButton">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>350</y>
+      <width>96</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Multiplicar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dividirButton">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>350</y>
+      <width>96</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dividir</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>90</y>
+      <width>131</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 19pt &quot;Cantarell&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Conversor</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>300</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 19pt &quot;Cantarell&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Operaciones básicas</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -154,7 +238,7 @@ color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>714</width>
-     <height>18</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>

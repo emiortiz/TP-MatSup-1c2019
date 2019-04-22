@@ -20,6 +20,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         self.getComplejos.clicked.connect(self.getNumerosComplejo)
+        self.sumarButton.clicked.connect(self.sumar)
+#        self.restarButton.clicked.connect(self.restar)
+#        self.multiplicarButton.clicked.connect(self.multiplicar)
+#        self.dividirButton.clicked.connect(self.dividir)
 
         global numeroC
 
@@ -75,9 +79,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             imaginario = numero[numero.find('+') + 1: len(numero)-1]
             numeroComplejo = NumeroComplejo(real,imaginario)
         else:
-            if re.match('\[-?([0-9]+|[0-9]+\.[0-9]+),-?([0-9]+|[0-9]+\.[0-9]+)\]', numero):
-                P = numero[1:numero.find(',')]
-                Q = numero[numero.find(',') + 1: len(numero)-1]
+            if re.match('\[-?([0-9]+|[0-9]+\.[0-9]+);-?([0-9]+|[0-9]+\.[0-9]+)\]', numero):
+                P = numero[1:numero.find(';')]
+                Q = numero[numero.find(';') + 1: len(numero)-1]
                 numeroComplejo.setEnPolar(P,Q)
             else:
                 if re.match('\(-?([0-9]+|[0-9]+\.[0-9]+),-?([0-9]+|[0-9]+\.[0-9]+)\)', numero):
@@ -88,6 +92,29 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                     numeroComplejo = ''
 
         return numeroComplejo
+
+    def sumar(self):
+        numero1 = NumeroComplejo('0','0')
+        numero2 = NumeroComplejo('0','0')
+        numeroComplejo1, okPressed = QInputDialog.getText(self, "Suma","Numero 1:", QLineEdit.Normal, "")
+        if okPressed and numeroComplejo1 != '':
+            numero1 = self.setNumeroComplejo(numeroComplejo1)
+            numeroComplejo2, okPressed = QInputDialog.getText(self, "Suma","Numero 2:", QLineEdit.Normal, "")
+
+            if okPressed and numeroComplejo2 != '':        
+                numero2 = self.setNumeroComplejo(numeroComplejo2)
+                try:
+                    real = Decimal(numero1.getReal()) + Decimal(numero2.getReal())
+                    imaginario = Decimal(numero1.getImaginario()) + Decimal(numero2.getImaginario())
+                    numeroResultado = NumeroComplejo(str(real),str(imaginario))
+
+                    self.binomicaText.setText(numeroResultado.getFormaBinomica())
+                    self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
+                    self.polarText.setText(numeroResultado.getFormaPolar())
+
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+
 
 
 if __name__ == "__main__":
