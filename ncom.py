@@ -26,7 +26,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.multiplicarButton.clicked.connect(self.multiplicar)
         self.dividirButton.clicked.connect(self.dividir)
         self.potenciaButton.clicked.connect(self.potenciar)
-#        self.raizButton.clicked.connect(self,raiz)
+        self.raizButton.clicked.connect(self.raiz)
 
         global numeroC
 
@@ -205,19 +205,43 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             exponente, okPressed = QInputDialog.getText(self, "Potencia","Exponente::", QLineEdit.Normal, "")
  
             if okPressed and exponente != '':
-    #            try:
-                nuevoModulo = math.pow(Decimal(numero.getModulo()),Decimal(exponente))
-                nuevoAngulo = Decimal(numero.getAngulo()) * Decimal(exponente)
+                try:
+                    nuevoModulo = math.pow(Decimal(numero.getModulo()),Decimal(exponente))
+                    nuevoAngulo = Decimal(numero.getAngulo()) * Decimal(exponente)
                 
-                numeroResultado = NumeroComplejo('0','0')
-                numeroResultado.setEnPolar(str(round(nuevoModulo,2)),str(round(nuevoAngulo,2)))                
+                    numeroResultado = NumeroComplejo('0','0')
+                    numeroResultado.setEnPolar(str(round(nuevoModulo,2)),str(round(nuevoAngulo,2)))                
 
-                self.binomicaText.setText(numeroResultado.getFormaBinomica())
-                self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
-                self.polarText.setText(numeroResultado.getFormaPolar())
+                    self.binomicaText.setText(numeroResultado.getFormaBinomica())
+                    self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
+                    self.polarText.setText(numeroResultado.getFormaPolar())
  
-        #        except:
-       #             msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+
+
+
+    def raiz(self):
+        numero = NumeroComplejo('0','0')
+        numeroComplejo, okPressed = QInputDialog.getText(self, "Raiz","Complejo:", QLineEdit.Normal, "")
+        if okPressed and numeroComplejo != '':
+            numero = self.setNumeroComplejo(numeroComplejo)
+            raiz, okPressed = QInputDialog.getText(self, "Raiz","Raiz:", QLineEdit.Normal, "")
+ 
+            if okPressed and raiz != '':
+                try:
+                    nuevoModulo = math.pow(Decimal(numero.getModulo()),(1/Decimal(raiz)))
+                    nuevoAngulo = Decimal(numero.getAngulo()) / Decimal(raiz)
+ 
+                    numeroResultado = NumeroComplejo('0','0')
+                    numeroResultado.setEnPolar(str(round(nuevoModulo,2)),str(round(nuevoAngulo,2)))
+ 
+                    self.binomicaText.setText(numeroResultado.getFormaBinomica())
+                    self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
+                    self.polarText.setText(numeroResultado.getFormaPolar())
+ 
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
 
 if __name__ == "__main__":
