@@ -70,17 +70,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         numeroComplejo = NumeroComplejo('0','0')
 
-        if re.match('-?([0-9]+|[0-9]+\.[0-9]+)\+([0-9]+|[0-9]+\.[0-9]+)j', numero):
+        if re.match('-?([0-9]+|[0-9]+\.[0-9]+)\+-?([0-9]+|[0-9]+\.[0-9]+)j', numero):
             real = numero[0:numero.find('+')]
             imaginario = numero[numero.find('+') + 1: len(numero)-1]
             numeroComplejo = NumeroComplejo(real,imaginario)
         else:
-            if re.match('\[-?([0-9]+|[0-9]+\.[0-9]+),([0-9]+|[0-9]+\.[0-9]+)\]', numero):
+            if re.match('\[-?([0-9]+|[0-9]+\.[0-9]+),-?([0-9]+|[0-9]+\.[0-9]+)\]', numero):
                 P = numero[1:numero.find(',')]
                 Q = numero[numero.find(',') + 1: len(numero)-1]
                 numeroComplejo.setEnPolar(P,Q)
             else:
-                if re.match('\(-?([0-9]+|[0-9]+\.[0-9]+),([0-9]+|[0-9]+\.[0-9]+)\)', numero):
+                if re.match('\(-?([0-9]+|[0-9]+\.[0-9]+),-?([0-9]+|[0-9]+\.[0-9]+)\)', numero):
                     real = numero[1:numero.find(',')]
                     imaginario = numero[numero.find(',') + 1: len(numero)-1]
                     numeroComplejo = NumeroComplejo(real,imaginario)
