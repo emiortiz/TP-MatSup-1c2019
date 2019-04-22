@@ -19,7 +19,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.getComplejos.clicked.connect(self.getNumeroComplejo)
+        self.getComplejos.clicked.connect(self.getNumerosComplejo)
 
         global numeroC
 
