@@ -1,11 +1,11 @@
 # Matematica Superior UTN 2019 1C
-## Miau Miau Miau
 
 
 # Documentation 
 ## Enviroment
 
 Base system: Linux Fedora 29
+
 Requirements:
  - python 3.7 or greater
  - pip 1.8 or greater
@@ -36,4 +36,8 @@ $ source venv/bin/activate
 $ pip install -r requeriments.txt
 ~~~
 
+## Run
 
+~~~
+$ python3 ncom.py
+~~~
