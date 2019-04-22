@@ -23,9 +23,11 @@ $ pip install --user virtualenv
 $ git clone <repo>
 ~~~
 
+## How to run
 ### Create a virtualenv and activate it
 
 ~~~
+$ cd <repo>
 $ virtualenv venv
 $ source venv/bin/activate
 ~~~
@@ -36,7 +38,7 @@ $ source venv/bin/activate
 $ pip install -r requeriments.txt
 ~~~
 
-## Run
+### Run
 
 ~~~
 $ python3 ncom.py
