@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>688</width>
-    <height>473</height>
+    <height>577</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,8 +33,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>320</y>
+      <x>160</x>
+      <y>410</y>
       <width>67</width>
       <height>19</height>
      </rect>
@@ -46,8 +46,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>350</y>
+      <x>160</x>
+      <y>440</y>
       <width>101</width>
       <height>19</height>
      </rect>
@@ -59,8 +59,8 @@
    <widget class="QLabel" name="binomicaText">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>320</y>
+      <x>300</x>
+      <y>410</y>
       <width>171</width>
       <height>19</height>
      </rect>
@@ -78,8 +78,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>380</y>
+      <x>160</x>
+      <y>470</y>
       <width>41</width>
       <height>19</height>
      </rect>
@@ -108,8 +108,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="ordenadoText">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>350</y>
+      <x>300</x>
+      <y>440</y>
       <width>171</width>
       <height>19</height>
      </rect>
@@ -127,8 +127,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="polarText">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>380</y>
+      <x>300</x>
+      <y>470</y>
       <width>171</width>
       <height>19</height>
      </rect>
@@ -230,8 +230,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>270</y>
+      <x>260</x>
+      <y>360</y>
       <width>111</width>
       <height>31</height>
      </rect>
@@ -241,6 +241,48 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Resultado</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>270</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 19pt &quot;Cantarell&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Operaciones avanzadas</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="potenciaButton">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>310</y>
+      <width>96</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Potencia</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="raizButton">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>310</y>
+      <width>96</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Raiz</string>
     </property>
    </widget>
   </widget>

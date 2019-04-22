@@ -16,6 +16,28 @@ class NumeroComplejo(object):
     def getImaginario(self):
         return self.imaginario
 
+    def getModulo(self):
+        p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))    
+        return p    
+
+    def getAngulo(self):
+        if self.real != 0 :
+            O = math.atan(self.imaginario/self.real)
+        else:
+            if self.imaginario > 0 :
+                O = math.pi / 2
+            else:
+                O = math.pi * 3 / 2
+ 
+        if (self.real > 0) and (self.imaginario < 0) :
+            O += 2 * math.pi
+ 
+        if self.real < 0 :
+            O += math.pi
+
+        return O
+
+
     def getFormaBinomica(self):
         text = ''
         if self.real != 0:
@@ -47,30 +69,14 @@ class NumeroComplejo(object):
         text += ')'
 
         return text
-
+        
     def getFormaPolar(self):
-        p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))
-
-        if self.real != 0 :
-            O = math.atan(self.imaginario/self.real)
-        else:
-            if self.imaginario > 0 :
-                O = math.pi / 2
-            else:
-                O = math.pi * 3 / 2
-
-        if (self.real > 0) and (self.imaginario < 0) :
-            O += 2 * math.pi
-
-        if self.real < 0 :
-            O += math.pi
-
-        return ("[" + str(round(p,2)) + ";" + str(round(O,2)) + "]")
-
+        return ("[" + str(round(self.getModulo(),2)) + ";" + str(round(self.getAngulo(),2)) + "]")
+ 
     def setEnPolar(self,p,O):
         p = p.replace(",",".")
         O = O.replace(",",".")
         a = Decimal(p) * Decimal(math.cos(Decimal(O)))
         b = Decimal(p) * Decimal(math.sin(Decimal(O)))
-        self.real = round(a,4)
-        self.imaginario = round(b,4)
+        self.real = round(a,2)
+        self.imaginario = round(b,2)
