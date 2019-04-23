@@ -35,7 +35,7 @@ $ source venv/bin/activate
 ### Install requirements
 
 ~~~
-$ pip install -r requeriments.txt
+$ pip install -r requirements.txt
 ~~~
 
 ### Run
