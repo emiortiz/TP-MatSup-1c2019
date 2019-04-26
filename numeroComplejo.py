@@ -9,7 +9,7 @@ class NumeroComplejo(object):
 
         self.real = Decimal(real)
         self.imaginario = Decimal(imaginario)
-    
+
     def getReal(self):
         return self.real;
 
@@ -17,8 +17,8 @@ class NumeroComplejo(object):
         return self.imaginario
 
     def getModulo(self):
-        p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))    
-        return p    
+        p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))
+        return p
 
     def getAngulo(self):
         if self.real != 0 :
@@ -28,10 +28,10 @@ class NumeroComplejo(object):
                 O = math.pi / 2
             else:
                 O = math.pi * 3 / 2
- 
+
         if (self.real > 0) and (self.imaginario < 0) :
             O += 2 * math.pi
- 
+
         if self.real < 0 :
             O += math.pi
 
@@ -69,10 +69,10 @@ class NumeroComplejo(object):
         text += ')'
 
         return text
-        
+
     def getFormaPolar(self):
         return ("[" + str(round(self.getModulo(),2)) + ";" + str(round(self.getAngulo(),2)) + "]")
- 
+
     def setEnPolar(self,p,O):
         p = p.replace(",",".")
         O = O.replace(",",".")
