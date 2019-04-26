@@ -31,34 +31,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         global numeroC
 
-    # def getNumeroBinomica(self):
-    #     real, okPressed = QInputDialog.getText(self, "Valor Real","Real:", QLineEdit.Normal, "")
-    #     if okPressed and real != '':
-    #         imag, okPressed2 = QInputDialog.getText(self, "Valor Imaginario","Imaginario:", QLineEdit.Normal, "")
-    #         if okPressed2 and imag != '':
-    #             try:
-    #                 numeroC = NumeroComplejo(real,imag)
-    #                 self.binomicaText.setText(numeroC.getFormaBinomica())
-    #                 self.ordenadoText.setText(numeroC.getFormaOrdenada())
-    #                 self.polarText.setText(numeroC.getFormaPolar())
-    #             except:
-    #                 msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
-    #
-    # def getNumeroPolar(self):
-    #     p, okPressed = QInputDialog.getText(self, "Modulo","Fi (p):", QLineEdit.Normal, "")
-    #     if okPressed and p != '':
-    #         O, okPressed2 = QInputDialog.getText(self, "Angulo","Tita en radianes (O):", QLineEdit.Normal, "")
-    #         if okPressed2 and O != '':
-    #
-    #             try:
-    #                 numeroC = NumeroComplejo("0","0")
-    #                 numeroC.setEnPolar(p,O)
-    #                 self.binomicaText.setText(numeroC.getFormaBinomica())
-    #                 self.ordenadoText.setText(numeroC.getFormaOrdenada())
-    #                 self.polarText.setText(numeroC.getFormaPolar())
-    #             except:
-    #                 msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
-
     def getNumerosComplejo(self,numero):
 
         numeroComplejo, okPressed = QInputDialog.getText(self, "Numero Complejo","Numero:", QLineEdit.Normal, "")
@@ -83,7 +55,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             imaginario = numero[numero.find('+') + 1: len(numero)-1]
             numeroComplejo = NumeroComplejo(real,imaginario)
         else:
-            if re.match('\[-?([0-9]+|[0-9]+\.[0-9]+);-?([0-9]+|[0-9]+\.[0-9]+)\]', numero):
+            if re.match('\[([0-9]+|[0-9]+\.[0-9]+);-?([0-9]+|[0-9]+\.[0-9]+)\]', numero):
                 P = numero[1:numero.find(';')]
                 Q = numero[numero.find(';') + 1: len(numero)-1]
                 numeroComplejo.setEnPolar(P,Q)
@@ -247,34 +219,33 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             raiz, okPressed = QInputDialog.getText(self, "Raiz","Raiz:", QLineEdit.Normal, "")
 
             if okPressed and raiz != '':
-#               try:
-                nuevoModulo = math.pow(Decimal(numero.getModulo()),(1/Decimal(raiz)))
+                try:
+                    nuevoModulo = math.pow(Decimal(numero.getModulo()),(1/Decimal(raiz)))
 
-                raices = []
+                    raices = []
 
-                for k in range (0,int(raiz)):
-                    nuevoAngulo = (Decimal(numero.getAngulo()) + 2 * k * Decimal(math.pi)) / Decimal(raiz)
-                    nuevaRaiz = "[" + str(round(nuevoModulo,2)) + ";" + str(round(nuevoAngulo,2)) + "]"
+                    for k in range (0,int(raiz)):
+                        nuevoAngulo = (Decimal(numero.getAngulo()) + 2 * k * Decimal(math.pi)) / Decimal(raiz)
+                        nuevaRaiz = "[" + str(round(nuevoModulo,2)) + ";" + str(round(nuevoAngulo,2)) + "]"
 
-                    if k != (int(raiz)-1):
-                        nuevaRaiz += " - "
+                        if k != (int(raiz)-1):
+                            nuevaRaiz += " - "
 
-                    raices.append(nuevaRaiz)
+                        raices.append(nuevaRaiz)
 
-                raicesEnTexto = ""
+                    raicesEnTexto = ""
 
-                for x in raices:
-                    raicesEnTexto += x
+                    for x in raices:
+                        raicesEnTexto += x
 
-#                resultadoBox = QMessageBox.information(self,"Raices",texto)
 
-                msgBox = QMessageBox(self)
-                msgBox.setWindowTitle("Raices")
-                msgBox.setText(raicesEnTexto)
-                msgBox.exec()
+                    msgBox = QMessageBox(self)
+                    msgBox.setWindowTitle("Raices")
+                    msgBox.setText(raicesEnTexto)
+                    msgBox.exec()
 
-                #except:
-                 #   msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
 
 if __name__ == "__main__":

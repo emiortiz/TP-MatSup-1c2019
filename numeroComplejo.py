@@ -76,6 +76,9 @@ class NumeroComplejo(object):
     def setEnPolar(self,p,O):
         p = p.replace(",",".")
         O = O.replace(",",".")
+        if Decimal(O) < 0:
+            O = Decimal(O) + Decimal(math.pi) * 2
+
         a = Decimal(p) * Decimal(math.cos(Decimal(O)))
         b = Decimal(p) * Decimal(math.sin(Decimal(O)))
         self.real = round(a,2)
