@@ -28,6 +28,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.potenciaButton.clicked.connect(self.potenciar)
         self.raizButton.clicked.connect(self.raiz)
         self.nesimasButton.clicked.connect(self.nesimas)
+        self.fasoresButton.clicked.connect(self.sumaFasores)
+
 
         global numeroC
 
@@ -65,7 +67,31 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                     imaginario = numero[numero.find(',') + 1: len(numero)-1]
                     numeroComplejo = NumeroComplejo(real,imaginario)
                 else:
-                    numeroComplejo = ''
+                    if re.match('([0-9]+|[0-9]+\.[0-9]+)?cos\(([0-9]+|[0-9]+\.[0-9]+)t(\+|-)([0-9]+|[0-9]+\.[0-9]+)\)', numero):
+                        P = numero[0:numero.find('cos')]
+                        if P == '':
+                            P = 1
+                        print(P)
+                        W = numero[numero.find('(') + 1 : numero.find('t')]
+                        print(W)
+                        Q = numero[numero.find('t') + 1 : numero.find(')')]
+                        print(Q)
+                        numeroComplejo.setEnTrigonometrica(P,Q,W,1)
+
+                    else:
+                        if re.match('([0-9]+|[0-9]+\.[0-9]+)?sen\(([0-9]+|[0-9]+\.[0-9]+)t(\+|-)([0-9]+|[0-9]+\.[0-9]+)\)', numero):
+                            P = numero[0:numero.find('sen')]
+                            if P == '':
+                                P = 1
+                            print(P)
+                            Q = numero[numero.find('t') + 1 : numero.find(')')]
+                            print(Q)
+                            W = numero[numero.find('(') + 1 : numero.find('t')]
+                            print(W)
+                            numeroComplejo.setEnTrigonometrica(P,Q,W,0)
+
+                        else:
+                            numeroComplejo = ''
 
         return numeroComplejo
 
@@ -143,6 +169,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         imaginario = Decimal(numero.getImaginario()) * (-1)
         conjugado = NumeroComplejo(str(real),str(imaginario))
         return conjugado
+
     def dividir(self):
         numero1 = NumeroComplejo('0','0')
         numero2 = NumeroComplejo('0','0')
@@ -247,6 +274,31 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
+    def sumaFasores(self):
+        numero1 = NumeroComplejo('0','0')
+        numero2 = NumeroComplejo('0','0')
+        numeroComplejo1, okPressed = QInputDialog.getText(self, "Suma de fasores","Numero 1:", QLineEdit.Normal, "")
+        if okPressed and numeroComplejo1 != '':
+            numero1 = self.setNumeroComplejo(numeroComplejo1)
+            numeroComplejo2, okPressed = QInputDialog.getText(self, "Suma de fasores","Numero 2:", QLineEdit.Normal, "")
+
+            if okPressed and numeroComplejo2 != '':
+                numero2 = self.setNumeroComplejo(numeroComplejo2)
+                #try:
+                if numero1.getFrecuencia() == numero2.getFrecuencia() :
+                    real = numero1.getReal() + numero2.getReal()
+                    imaginario = numero1.getImaginario() + numero2.getImaginario()
+                    numeroFinal = NumeroComplejo(str(real),str(imaginario))
+                    numeroFinal.setFrecuencia(numero1.getFrecuencia())
+
+                    msgBox = QMessageBox(self)
+                    msgBox.setWindowTitle("Suma")
+                    msgBox.setText(numeroFinal.getFormaTrigonometrica())
+                    msgBox.exec()
+                else:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Frecuencias distintas, no se puede realizar la suma")
+                #except:
+                 #   msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
 if __name__ == "__main__":
     app =  QtWidgets.QApplication(sys.argv)

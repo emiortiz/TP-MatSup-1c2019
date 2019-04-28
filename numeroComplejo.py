@@ -9,6 +9,7 @@ class NumeroComplejo(object):
 
         self.real = Decimal(real)
         self.imaginario = Decimal(imaginario)
+        self.frecuencia = "23"
 
     def getReal(self):
         return self.real;
@@ -83,3 +84,19 @@ class NumeroComplejo(object):
         b = Decimal(p) * Decimal(math.sin(Decimal(O)))
         self.real = round(a,2)
         self.imaginario = round(b,2)
+
+    def setFrecuencia(self,w):
+        self.frecuencia = w
+
+    def setEnTrigonometrica(self,p,O,w,cos):
+        if cos != 1:
+            O = Decimal(O) + Decimal(math.pi) / 2
+
+        self.setEnPolar(p,str(O))
+        self.frecuencia = w
+
+    def getFrecuencia(self):
+        return self.frecuencia
+
+    def getFormaTrigonometrica(self):
+        return (str(round(self.getModulo(),2)) + " cos(" + self.getFrecuencia() + "t + " + str(round(self.getAngulo(),2)) + ")")
