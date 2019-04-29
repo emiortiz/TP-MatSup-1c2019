@@ -13,7 +13,7 @@ qtCreatorFile = "ncom.ui" # Nombre del archivo aquí.
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
-class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
+class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def __init__(self):
@@ -106,9 +106,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             if okPressed and numeroComplejo2 != '':
                 numero2 = self.setNumeroComplejo(numeroComplejo2)
                 try:
-                    real = Decimal(numero1.getReal()) + Decimal(numero2.getReal())
-                    imaginario = Decimal(numero1.getImaginario()) + Decimal(numero2.getImaginario())
-                    numeroResultado = NumeroComplejo(str(real),str(imaginario))
+                    numeroResultado = self.operacionSumar(numero1,numero2)
 
                     self.binomicaText.setText(numeroResultado.getFormaBinomica())
                     self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
@@ -128,9 +126,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             if okPressed and numeroComplejo2 != '':
                 numero2 = self.setNumeroComplejo(numeroComplejo2)
                 try:
-                    real = Decimal(numero1.getReal()) - Decimal(numero2.getReal())
-                    imaginario = Decimal(numero1.getImaginario()) - Decimal(numero2.getImaginario())
-                    numeroResultado = NumeroComplejo(str(real),str(imaginario))
+                    numeroResultado = self.operacionrRestar(numero1,numero2)
 
                     self.binomicaText.setText(numeroResultado.getFormaBinomica())
                     self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
@@ -158,10 +154,31 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
+    def operacionSumar(self,numero1,numero2):
+        real = Decimal(numero1.getReal()) + Decimal(numero2.getReal())
+        imaginario = Decimal(numero1.getImaginario()) + Decimal(numero2.getImaginario())
+        numeroResultado = NumeroComplejo(str(real),str(imaginario))
+        return numeroResultado
+
+    def operacionRestar(self,numero1,numero2):
+        real = Decimal(numero1.getReal()) - Decimal(numero2.getReal())
+        imaginario = Decimal(numero1.getImaginario()) - Decimal(numero2.getImaginario())
+        numeroResultado = NumeroComplejo(str(real),str(imaginario))
+        return numeroResultado
+
     def operacionMultiplicar(self,numero1,numero2):
         real = Decimal(numero1.getReal()) * Decimal(numero2.getReal()) + (-1) * Decimal(numero1.getImaginario()) * Decimal(numero2.getImaginario())
         imaginario = Decimal(numero1.getReal()) * Decimal(numero2.getImaginario()) + Decimal(numero1.getImaginario()) * Decimal(numero2.getReal())
         numeroResultado = NumeroComplejo(str(real),str(imaginario))
+        return numeroResultado
+
+    def operacionDividir(self,numero1,numero2):
+        conjugadoDivisor = self.getConjugado(numero2)
+        divisorResultado = math.pow(Decimal(numero2.getReal()),2) + math.pow(Decimal(numero2.getImaginario()),2)
+        dividendo = self.operacionMultiplicar(numero1,conjugadoDivisor)
+        parteReal = Decimal(dividendo.getReal()) / Decimal(divisorResultado)
+        parteImaginaria = Decimal(dividendo.getImaginario()) / Decimal(divisorResultado)
+        numeroResultado = NumeroComplejo(str(round(parteReal,2)),str(round(parteImaginaria,2)))
         return numeroResultado
 
     def getConjugado(self,numero):
@@ -181,12 +198,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             if okPressed and numeroComplejo2 != '':
                 numero2 = self.setNumeroComplejo(numeroComplejo2)
                 try:
-                    conjugadoDivisor = self.getConjugado(numero2)
-                    divisorResultado = math.pow(Decimal(numero2.getReal()),2) + math.pow(Decimal(numero2.getImaginario()),2)
-                    dividendo = self.operacionMultiplicar(numero1,conjugadoDivisor)
-                    parteReal = Decimal(dividendo.getReal()) / Decimal(divisorResultado)
-                    parteImaginaria = Decimal(dividendo.getImaginario()) / Decimal(divisorResultado)
-                    numeroResultado = NumeroComplejo(str(round(parteReal,2)),str(round(parteImaginaria,2)))
+                    numeroResultado = self.operacionDividir(numero1,numero2)
                     self.binomicaText.setText(numeroResultado.getFormaBinomica())
                     self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
                     self.polarText.setText(numeroResultado.getFormaPolar())
@@ -302,6 +314,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
 if __name__ == "__main__":
     app =  QtWidgets.QApplication(sys.argv)
-    window = MyApp()
+    window = NCom()
     window.show()
     sys.exit(app.exec_())
