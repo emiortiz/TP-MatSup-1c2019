@@ -303,7 +303,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>160</x>
       <y>530</y>
       <width>411</width>
       <height>41</height>
@@ -328,38 +328,6 @@ font: 81 11pt &quot;Cantarell&quot;;</string>
     </property>
     <property name="text">
      <string>Raices n-ésimas</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>500</y>
-      <width>121</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Trigonométrica:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="trigonometricaText">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>500</y>
-      <width>171</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(20, 219, 232);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="fasoresButton">

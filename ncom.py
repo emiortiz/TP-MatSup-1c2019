@@ -15,7 +15,6 @@ Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
 
-
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
@@ -29,7 +28,6 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
         self.raizButton.clicked.connect(self.raiz)
         self.nesimasButton.clicked.connect(self.nesimas)
         self.fasoresButton.clicked.connect(self.sumaFasores)
-
 
         global numeroC
 
@@ -144,6 +142,24 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+    def dividir(self):
+        numero1 = NumeroComplejo('0','0')
+        numero2 = NumeroComplejo('0','0')
+        numeroComplejo1, okPressed = QInputDialog.getText(self, "Resta","Numero 1:", QLineEdit.Normal, "")
+        if okPressed and numeroComplejo1 != '':
+            numero1 = self.setNumeroComplejo(numeroComplejo1)
+            numeroComplejo2, okPressed = QInputDialog.getText(self, "Resta","Numero 2:", QLineEdit.Normal, "")
+
+            if okPressed and numeroComplejo2 != '':
+                numero2 = self.setNumeroComplejo(numeroComplejo2)
+                try:
+                    numeroResultado = self.operacionDividir(numero1,numero2)
+                    self.binomicaText.setText(numeroResultado.getFormaBinomica())
+                    self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
+                    self.polarText.setText(numeroResultado.getFormaPolar())
+
+                except:
+                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
     def operacionSumar(self,numero1,numero2):
         real = Decimal(numero1.getReal()) + Decimal(numero2.getReal())
@@ -178,25 +194,6 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
         conjugado = NumeroComplejo(str(real),str(imaginario))
         return conjugado
 
-    def dividir(self):
-        numero1 = NumeroComplejo('0','0')
-        numero2 = NumeroComplejo('0','0')
-        numeroComplejo1, okPressed = QInputDialog.getText(self, "Resta","Numero 1:", QLineEdit.Normal, "")
-        if okPressed and numeroComplejo1 != '':
-            numero1 = self.setNumeroComplejo(numeroComplejo1)
-            numeroComplejo2, okPressed = QInputDialog.getText(self, "Resta","Numero 2:", QLineEdit.Normal, "")
-
-            if okPressed and numeroComplejo2 != '':
-                numero2 = self.setNumeroComplejo(numeroComplejo2)
-                try:
-                    numeroResultado = self.operacionDividir(numero1,numero2)
-                    self.binomicaText.setText(numeroResultado.getFormaBinomica())
-                    self.ordenadoText.setText(numeroResultado.getFormaOrdenada())
-                    self.polarText.setText(numeroResultado.getFormaPolar())
-
-                except:
-                    msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
-
     def potenciar(self):
         numero = NumeroComplejo('0','0')
         numeroComplejo, okPressed = QInputDialog.getText(self, "Potencia","Complejo:", QLineEdit.Normal, "")
@@ -216,8 +213,6 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
-
-
 
     def raiz(self):
         numero = NumeroComplejo('0','0')

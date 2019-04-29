@@ -61,7 +61,7 @@ class NumerosComplejosTest(unittest.TestCase):
         resultado = main.operacionMultiplicar(numero1,numero2)
         self.assertEqual(resultado.getFormaOrdenada(),"(37,-5)")
 
-    def testMultiplicar(self):
+    def testDividir(self):
         numero1 = NumeroComplejo("3","4")
         numero2 = NumeroComplejo("2","1")
         app = QtWidgets.QApplication(sys.argv)
