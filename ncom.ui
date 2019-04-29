@@ -330,19 +330,6 @@ font: 81 11pt &quot;Cantarell&quot;;</string>
      <string>Raices n-ésimas</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="fasoresButton">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>310</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Suma de Fasores</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
@@ -375,6 +362,19 @@ font: 81 11pt &quot;Cantarell&quot;;</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="fasoresButton">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>310</y>
+      <width>121</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sumar fasores</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -382,7 +382,7 @@ font: 81 11pt &quot;Cantarell&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>
