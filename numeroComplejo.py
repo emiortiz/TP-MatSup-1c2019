@@ -10,6 +10,8 @@ class NumeroComplejo(object):
         self.real = Decimal(real)
         self.imaginario = Decimal(imaginario)
         self.frecuencia = "23"
+        self.modulo = ''
+        self.angulo = ''
 
     def getReal(self):
         return self.real;
@@ -18,52 +20,60 @@ class NumeroComplejo(object):
         return self.imaginario
 
     def getModulo(self):
-        p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))
-        return p
+        if self.modulo == '':
+            p = math.sqrt(pow(self.real,2) + pow(self.imaginario,2))
+            return p
+        else:
+            return Decimal(self.modulo)
 
     def getAngulo(self):
-        if self.real != 0 :
-            O = math.atan(self.imaginario/self.real)
-        else:
-            if self.imaginario > 0 :
-                O = math.pi / 2
+
+        if self.angulo == '':
+
+            if self.real != 0 :
+                O = math.atan(self.imaginario/self.real)
             else:
-                O = math.pi * 3 / 2
+                if self.imaginario > 0 :
+                    O = math.pi / 2
+                else:
+                    O = math.pi * 3 / 2
 
-        if (self.real > 0) and (self.imaginario < 0) :
-            O += 2 * math.pi
+            if (self.real > 0) and (self.imaginario < 0) :
+                O += 2 * math.pi
 
-        if self.real < 0 :
-            O += math.pi
+            if self.real < 0 :
+                O += math.pi
 
-        return O
+            return O
+        else:
+            return Decimal(self.angulo)
 
 
     def getFormaBinomica(self):
         text = ''
         if self.real != 0:
-            text += str(self.real)
+            text += str(round(self.real,2))
         if self.imaginario != 0:
             if self.imaginario < 0:
-                text += str(self.imaginario) + "j"
+                text += str(round(self.imaginario,2)) + "j"
             else:
                 if text != '':
                     text += "+"
-                text += str(self.imaginario) + "j"
+                text += str(round(self.imaginario,2)) + "j"
         return text
 
     def getFormaOrdenada(self):
         text = '('
 
         if self.real != 0:
-            text += str(self.real)
+            text += str(round(self.real,2))
         else:
             text += '0'
 
         text += ','
 
         if self.imaginario != 0:
-            text += str(self.imaginario)
+            text += str(round(self.imaginario,2))
         else:
             text += '0'
 
@@ -80,10 +90,10 @@ class NumeroComplejo(object):
         if Decimal(O) < 0:
             O = Decimal(O) + Decimal(math.pi) * 2
 
-        a = Decimal(p) * Decimal(math.cos(Decimal(O)))
-        b = Decimal(p) * Decimal(math.sin(Decimal(O)))
-        self.real = round(a,2)
-        self.imaginario = round(b,2)
+        self.modulo = p
+        self.angulo = O
+        self.real = Decimal(p) * Decimal(math.cos(Decimal(O)))
+        self.imaginario = Decimal(p) * Decimal(math.sin(Decimal(O)))
 
     def setFrecuencia(self,w):
         self.frecuencia = w

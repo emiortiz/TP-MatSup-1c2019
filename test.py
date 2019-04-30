@@ -43,7 +43,7 @@ class NumerosComplejosTest(unittest.TestCase):
         app = QtWidgets.QApplication(sys.argv)
         main = NCom()
         resultado = main.operacionSumar(numero1,numero2)
-        self.assertEqual(resultado.getFormaOrdenada(),"(7,2)")
+        self.assertEqual(resultado.getFormaOrdenada(),"(7.00,2.00)")
 
     def testRestar(self):
         numero1 = NumeroComplejo("3","5")
@@ -51,7 +51,7 @@ class NumerosComplejosTest(unittest.TestCase):
         app = QtWidgets.QApplication(sys.argv)
         main = NCom()
         resultado = main.operacionRestar(numero1,numero2)
-        self.assertEqual(resultado.getFormaOrdenada(),"(-1,8)")
+        self.assertEqual(resultado.getFormaOrdenada(),"(-1.00,8.00)")
 
     def testMultiplicar(self):
         numero1 = NumeroComplejo("4","5")
@@ -59,7 +59,7 @@ class NumerosComplejosTest(unittest.TestCase):
         app = QtWidgets.QApplication(sys.argv)
         main = NCom()
         resultado = main.operacionMultiplicar(numero1,numero2)
-        self.assertEqual(resultado.getFormaOrdenada(),"(37,-5)")
+        self.assertEqual(resultado.getFormaOrdenada(),"(37.00,-5.00)")
 
     def testDividir(self):
         numero1 = NumeroComplejo("3","4")
@@ -68,3 +68,21 @@ class NumerosComplejosTest(unittest.TestCase):
         main = NCom()
         resultado = main.operacionDividir(numero1,numero2)
         self.assertEqual(resultado.getFormaOrdenada(),"(2.00,1.00)")
+
+    def testPotencia(self):
+        numero = NumeroComplejo("0","0")
+        numero.setEnPolar("4","5")
+        exponente = "4"
+        app = QtWidgets.QApplication(sys.argv)
+        main = NCom()
+        resultado = main.operacionPotencia(numero,exponente)
+        self.assertEqual(resultado.getFormaPolar(),"[256.00;20.00]")
+
+    def testRaiz(self):
+        numero = NumeroComplejo("0","0")
+        numero.setEnPolar("9","10")
+        exponente = "2"
+        app = QtWidgets.QApplication(sys.argv)
+        main = NCom()
+        resultado = main.operacionRaiz(numero,exponente)
+        self.assertEqual(resultado.getFormaPolar(),"[3.00;5.00]")
