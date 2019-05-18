@@ -217,6 +217,14 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
 
+    def maxComDiv(self,num1,num2):
+        resto = 0
+        while(num2>0):
+            resto = num2
+            num2 = num1 % num2
+            num1 = resto
+        return num1
+
     def nesimas(self):
         numero = NumeroComplejo('0','0')
         numeroComplejo, okPressed = QInputDialog.getText(self, "Raiz","Complejo:", QLineEdit.Normal, "")
@@ -243,6 +251,8 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
 
                     for i in range(len(raices)):
                         raicesEnTexto += "W" + str(i) + " = " + raices[i]
+                        if (self.esPrimitiva(i,Decimal(raiz)) == 1):
+                            raicesEnTexto += "(Prim)"
                         raicesEnTexto += "\n"
 
                     msgBox = QMessageBox()
@@ -254,6 +264,13 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+    def esPrimitiva(self,k,n):
+        if(k == 0):
+            return 0
+        if(k == 1):
+            return 1
+        else:
+            return  self.maxComDiv(k,n)
 
     def sumaFasores(self):
         numero1 = NumeroComplejo('0','0')
@@ -280,6 +297,8 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
                         msgBox = QMessageBox.critical(self,"Datos incorrectos","Frecuencias distintas, no se puede realizar la suma")
                 except:
                     msgBox = QMessageBox.critical(self,"Datos incorrectos","Vuelva a intentarlo")
+
+
 
 if __name__ == "__main__":
     app =  QtWidgets.QApplication(sys.argv)
