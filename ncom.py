@@ -234,19 +234,22 @@ class NCom(QtWidgets.QMainWindow, Ui_MainWindow):
                         nuevoAngulo = (Decimal(numero.getAngulo()) + 2 * k * Decimal(math.pi)) / Decimal(raiz)
                         nuevaRaiz = "[" + str(round(nuevoModulo,2)) + ";" + str(round(nuevoAngulo,2)) + "]"
 
-                        if k != (int(raiz)-1):
-                            nuevaRaiz += " - "
+                        #if k != (int(raiz)-1):
+                        #    nuevaRaiz += " - "
 
                         raices.append(nuevaRaiz)
 
                     raicesEnTexto = ""
 
-                    for x in raices:
-                        raicesEnTexto += x
+                    for i in range(len(raices)):
+                        raicesEnTexto += "W" + str(i) + " = " + raices[i]
+                        raicesEnTexto += "\n"
 
-                    msgBox = QMessageBox(self)
-                    msgBox.setWindowTitle("Raices")
+                    msgBox = QMessageBox()
+
+                    msgBox.setWindowTitle("MessageBox demo")
                     msgBox.setText(raicesEnTexto)
+
                     msgBox.exec()
 
                 except:
